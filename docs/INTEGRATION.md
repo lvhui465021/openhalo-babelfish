@@ -7,18 +7,21 @@ PostgreSQL 18.3 openHalo × Babelfish product.  It does not vendor component
 source code: each component remains independently reviewable, while a Gitlink
 records the exact combination that is tested and released.
 
-| Path | Repository | Maintenance branch | Current pinned revision |
+| Path | Repository | Maintenance branch | Current development revision |
 | --- | --- | --- | --- |
-| `components/postgres` | `postgresql_modified_for_babelfish` | `openhalo-fusion` | `d14bca64a9` |
-| `components/babelfish` | `babelfish_extensions` | `openhalo-fusion` | `63e6cebcf` |
+| `components/postgres` | `postgresql_modified_for_babelfish` | `openhalo-fusion` | `d9fe2b70f4` |
+| `components/babelfish` | `babelfish_extensions` | `openhalo-fusion` | `e003ba2204` |
 | `components/mysql` | `mysql_extensions` | `main` | `621c31dfa` |
 
 The pre-existing upstream-oriented repository names are intentionally kept:
 they preserve provenance and make upstream comparison straightforward.  The
 product-facing name belongs at this integration layer.
 
-`v18.3-fusion.1` was tagged at the preceding postgres revision `fbacb2057b`;
-`v18.3-fusion.2` is tagged at the current manifest with `d14bca64a9`.
+`v18.3-fusion.1` was tagged at the preceding postgres revision `fbacb2057b`.
+`v18.3-fusion.2` is the last accepted manifest: `d14bca64a9`,
+`63e6cebcf`, and `621c31dfa`. The current development manifest advances the
+kernel for configurable MySQL CLI selection and Babelfish generated-file
+ignore rules; it requires its own complete baseline before a subsequent tag.
 
 ## Build and test ownership
 

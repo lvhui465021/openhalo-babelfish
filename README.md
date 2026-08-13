@@ -68,6 +68,15 @@ SQLCMD_OPTIONS=-No \
 scripts/run-baseline.sh
 ```
 
+When building to a non-default prefix, pass the same prefix to the baseline:
+
+```bash
+PREFIX=/opt/openhalo \
+SQLCMD_BIN_DIR=/opt/mssql-tools18/bin \
+SQLCMD_OPTIONS=-No \
+scripts/run-baseline.sh
+```
+
 Or use client paths that were not linked into the installation prefix:
 
 ```bash

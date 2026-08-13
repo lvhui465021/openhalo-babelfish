@@ -1,6 +1,6 @@
 # Validation record
 
-## Current tested manifest
+## Last fully accepted manifest
 
 | Component | Branch | Revision |
 | --- | --- | --- |
@@ -9,9 +9,21 @@
 | MySQL extensions | `main` | `621c31dfa` |
 
 > The `v18.3-fusion.1` tag was created from the preceding manifest
-> (`fbacb2057b`, `63e6cebcf`, `621c31dfa`). The current `main` advances only
-> the kernel `run-baseline.sh` portability fix to `d14bca64a9`; the full
-> baseline was re-run on 2026-08-16 after that change and still passes.
+> (`fbacb2057b`, `63e6cebcf`, `621c31dfa`). `v18.3-fusion.2` advances the
+> kernel to `d14bca64a9`; its full baseline was re-run on 2026-08-16.
+
+## Current development manifest (baseline pending)
+
+| Component | Branch | Revision |
+| --- | --- | --- |
+| PostgreSQL fusion kernel | `openhalo-fusion` | `d9fe2b70f4` |
+| Babelfish extensions | `openhalo-fusion` | `e003ba2204` |
+| MySQL extensions | `main` | `621c31dfa` |
+
+This manifest is two integration commits beyond `v18.3-fusion.2`. It adds
+configurable MySQL CLI selection, install-prefix client links, and delivery
+automation. It is not a release acceptance record until the complete baseline
+has been re-run on these exact Gitlinks.
 
 ## Environment
 

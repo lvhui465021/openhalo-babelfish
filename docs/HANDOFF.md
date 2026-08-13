@@ -8,10 +8,11 @@ extensions. The kernel baseline accepts `MYSQLEXT_DIR`, `BABELFISH_EXT_DIR`,
 and `SQLCMD_BIN_DIR`, allowing this repository's `components/` layout to be
 used without compatibility symlinks.
 
-The current Gitlink combination was built successfully on Ubuntu 24.04 with
-`scripts/build-all.sh`. The focused kernel MySQL contracts passed: the build
-graph and vtable contracts passed, and the fork-drift test reported its
-documented expected failure.
+The `v18.3-fusion.2` Gitlink combination was built successfully on Ubuntu 24.04
+with `scripts/build-all.sh`. The focused kernel MySQL contracts passed: the
+build graph and vtable contracts passed, and the fork-drift test reported its
+documented expected failure. The development manifest beyond that tag is
+recorded separately in `VALIDATION.md` and still requires a complete baseline.
 
 The complete install-first baseline passed with Microsoft SQLCMD 18.6.0002.1:
 the PG-core Meson group passed with 12 OK and 2 expected skips; MySQL passed

@@ -41,6 +41,7 @@ jobs:
         run: PREFIX="$GITHUB_WORKSPACE/artifacts/inst" scripts/build-all.sh
       - name: Run protocol and kernel baseline
         env:
+          PREFIX: ${{ github.workspace }}/artifacts/inst
           SQLCMD_BIN_DIR: /opt/mssql-tools18/bin
           SQLCMD_OPTIONS: -No
         run: scripts/run-baseline.sh

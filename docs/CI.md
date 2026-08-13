@@ -23,6 +23,7 @@ The job runs:
 
 ```bash
 PREFIX="$GITHUB_WORKSPACE/artifacts/inst" scripts/build-all.sh
+PREFIX="$GITHUB_WORKSPACE/artifacts/inst" \
 SQLCMD_BIN_DIR=/opt/mssql-tools18/bin \
 SQLCMD_OPTIONS=-No \
 scripts/run-baseline.sh
