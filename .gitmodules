@@ -1,0 +1,12 @@
+[submodule "components/postgres"]
+	path = components/postgres
+	url = git@github.com:lvhui465021/postgresql_modified_for_babelfish.git
+	branch = openhalo-fusion
+[submodule "components/babelfish"]
+	path = components/babelfish
+	url = git@github.com:lvhui465021/babelfish_extensions.git
+	branch = openhalo-fusion
+[submodule "components/mysql"]
+	path = components/mysql
+	url = git@github.com:lvhui465021/mysql_extensions.git
+	branch = main

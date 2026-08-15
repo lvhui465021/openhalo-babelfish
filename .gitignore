@@ -1,0 +1,5 @@
+# Root-level local artifacts.  Component-specific build outputs remain ignored
+# by the component repositories themselves.
+/artifacts/
+/sqlcmd-bin/
+*.log
