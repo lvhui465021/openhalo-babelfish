@@ -9,8 +9,8 @@ records the exact combination that is tested and released.
 
 | Path | Repository | Maintenance branch | Pinned revision at initial integration |
 | --- | --- | --- | --- |
-| `components/postgres` | `postgresql_modified_for_babelfish` | `openhalo-fusion` | `8bcabc6d95` |
-| `components/babelfish` | `babelfish_extensions` | `openhalo-fusion` | `d9fd0311d` |
+| `components/postgres` | `postgresql_modified_for_babelfish` | `openhalo-fusion` | `fbacb2057b` |
+| `components/babelfish` | `babelfish_extensions` | `openhalo-fusion` | `63e6cebcf` |
 | `components/mysql` | `mysql_extensions` | `main` | `621c31dfa` |
 
 The pre-existing upstream-oriented repository names are intentionally kept:
@@ -28,10 +28,15 @@ supplies the standalone MySQL and Babelfish paths.  The kernel keeps PG-core
 Meson suites and end-to-end postmaster TAP tests; MySQL TAP tests stay in
 `components/mysql`; TDS TAP tests stay in `components/babelfish`.
 
-The TDS TAP suites require a real `sqlcmd`-compatible client. A local wrapper
+The TDS TAP suites require a real Microsoft `sqlcmd` client. A local wrapper
 around FreeTDS `tsql` can help with development experiments, but it is not a
 substitute for TDS acceptance because its authentication and diagnostic
-behavior differs from `sqlcmd`.
+behavior differs from `sqlcmd`. The test helper accepts client-specific flags
+through `SQLCMD_OPTIONS`; `mssql-tools18` must use `SQLCMD_OPTIONS=-No` for the
+non-TLS TAP fixture. This is a test setting, not a production TLS policy.
+
+The current manifest and its exact test evidence are recorded in
+[VALIDATION.md](VALIDATION.md).
 
 ## Change and release policy
 

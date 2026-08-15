@@ -47,6 +47,21 @@ to the TDS TAP suites, run the unified baseline:
 scripts/run-baseline.sh
 ```
 
+For the Microsoft ODBC 18 client, use its installed tool directory and make
+encryption optional for the non-TLS TAP fixture:
+
+```bash
+SQLCMD_BIN_DIR=/opt/mssql-tools18/bin \
+SQLCMD_OPTIONS=-No \
+scripts/run-baseline.sh
+```
+
+`-No` is for the local TAP fixture only. Production TDS deployments should
+configure and validate TLS rather than disabling required encryption.
+
+See [the validation record](docs/VALIDATION.md) for the tested manifest,
+environment, result matrix, and clean-clone acceptance command.
+
 The first build requires the prerequisites documented in
 `components/postgres/docs/FUSION_PLAN.md` (Meson/Ninja toolchain, libxml2,
 OpenSSL, Java/CMake, flex/bison, Perl, and ANTLR4 C++ runtime 4.13.2).
