@@ -10,7 +10,7 @@ records the exact combination that is tested and released.
 | Path | Repository | Maintenance branch | Pinned revision at initial integration |
 | --- | --- | --- | --- |
 | `components/postgres` | `postgresql_modified_for_babelfish` | `openhalo-fusion` | `8bcabc6d95` |
-| `components/babelfish` | `babelfish_extensions` | `openhalo-fusion` | `43130b10c` |
+| `components/babelfish` | `babelfish_extensions` | `openhalo-fusion` | `d9fd0311d` |
 | `components/mysql` | `mysql_extensions` | `main` | `621c31dfa` |
 
 The pre-existing upstream-oriented repository names are intentionally kept:
