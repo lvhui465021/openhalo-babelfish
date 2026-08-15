@@ -40,8 +40,8 @@ The MySQL listener defaults to `mysql_port = 3306`.  Use another port such as
 `13306` only as an explicit development override when a system MySQL instance
 already occupies 3306.
 
-After configuring a cluster and installing the optional `sqlcmd`-to-`tsql`
-shim under `sqlcmd-bin/`, run the unified baseline:
+After configuring a cluster and making a `sqlcmd`-compatible client available
+to the TDS TAP suites, run the unified baseline:
 
 ```bash
 scripts/run-baseline.sh

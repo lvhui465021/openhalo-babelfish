@@ -10,8 +10,8 @@ records the exact combination that is tested and released.
 | Path | Repository | Maintenance branch | Pinned revision at initial integration |
 | --- | --- | --- | --- |
 | `components/postgres` | `postgresql_modified_for_babelfish` | `openhalo-fusion` | `8bcabc6d95` |
-| `components/babelfish` | `babelfish_extensions` | `openhalo-fusion` | `76a3c26c3` |
-| `components/mysql` | `mysql_extensions` | `main` | `db10a8c4b` |
+| `components/babelfish` | `babelfish_extensions` | `openhalo-fusion` | `43130b10c` |
+| `components/mysql` | `mysql_extensions` | `main` | `621c31dfa` |
 
 The pre-existing upstream-oriented repository names are intentionally kept:
 they preserve provenance and make upstream comparison straightforward.  The
@@ -27,6 +27,11 @@ paths so the layout does not depend on historical sibling directory names.
 supplies the standalone MySQL and Babelfish paths.  The kernel keeps PG-core
 Meson suites and end-to-end postmaster TAP tests; MySQL TAP tests stay in
 `components/mysql`; TDS TAP tests stay in `components/babelfish`.
+
+The TDS TAP suites require a real `sqlcmd`-compatible client. A local wrapper
+around FreeTDS `tsql` can help with development experiments, but it is not a
+substitute for TDS acceptance because its authentication and diagnostic
+behavior differs from `sqlcmd`.
 
 ## Change and release policy
 
