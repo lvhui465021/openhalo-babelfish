@@ -8,7 +8,7 @@ three client-facing compatibility surfaces:
 | --- | --- | --- |
 | PostgreSQL wire protocol and SQL | `components/postgres` | 5432 |
 | SQL Server TDS and T-SQL | `components/babelfish` | 1433 |
-| MySQL wire protocol and syntax compatibility | `components/mysql` | 13306 |
+| MySQL wire protocol and syntax compatibility | `components/mysql` | 3306 |
 
 The components are Git submodules.  Their exact Gitlinks are the release
 manifest; the branches in `.gitmodules` are only the intended maintenance
@@ -35,6 +35,10 @@ or any component location, when needed:
 ```bash
 PREFIX=/opt/openhalo scripts/build-all.sh
 ```
+
+The MySQL listener defaults to `mysql_port = 3306`.  Use another port such as
+`13306` only as an explicit development override when a system MySQL instance
+already occupies 3306.
 
 After configuring a cluster and installing the optional `sqlcmd`-to-`tsql`
 shim under `sqlcmd-bin/`, run the unified baseline:
