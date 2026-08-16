@@ -16,6 +16,13 @@ for dir in "$KERNEL_DIR" "$BABELFISH_EXT_DIR" "$MYSQLEXT_DIR"; do
     fi
 done
 
+if [ ! -x "$SQLCMD_BIN_DIR/sqlcmd" ] && ! command -v sqlcmd >/dev/null 2>&1; then
+    echo "sqlcmd-compatible client not found" >&2
+    echo "install Microsoft mssql-tools18 or provide a sqlcmd wrapper, then" >&2
+    echo "rerun with SQLCMD_BIN_DIR set to its directory" >&2
+    exit 1
+fi
+
 MYSQLEXT_DIR="$MYSQLEXT_DIR" \
 BABELFISH_EXT_DIR="$BABELFISH_EXT_DIR" \
 SQLCMD_BIN_DIR="$SQLCMD_BIN_DIR" \
