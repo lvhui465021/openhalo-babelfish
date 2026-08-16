@@ -86,3 +86,22 @@ a missing sqlcmd client now fails the baseline instead of being silently
 skipped). The complete unified baseline was re-run on 2026-08-16 with
 `SQLCMD_BIN_DIR` pointing at the user-local sqlcmd wrapper and
 `SQLCMD_OPTIONS=-No`; result: `baseline: ALL PASS`.
+
+## v18.3-fusion.2 clean remote checkout result on 2026-08-16
+
+A fresh shallow `git clone --recurse-submodules --shallow-submodules` from
+`git@github.com:lvhui465021/openhalo-babelfish.git` was built and tested on
+the acceptance host. All three submodule checkouts resolved to the current
+tested manifest (`d14bca64a9`, `63e6cebcf`, `621c31dfa`).
+
+| Group | Result | Evidence |
+| --- | --- | --- |
+| Build | PASS | `scripts/build-all.sh` completed; kernel and all extensions installed |
+| PG-core Meson suites | PASS | 12 OK, 2 expected skips, 0 failures |
+| MySQL standalone TAP | PASS | 3 files, 31 checks |
+| MySQL kernel protocol/postmaster TAP | PASS | 2 files, 485 checks |
+| TDS TAP | PASS | `001_tdspasswd`: 6 checks; `003_bbfextnotloaded`: 2 checks |
+| Unified baseline | PASS | `baseline: ALL PASS` |
+
+This acceptance freezes the current manifest for the second product tag,
+`v18.3-fusion.2`.

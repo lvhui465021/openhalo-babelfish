@@ -18,7 +18,7 @@ they preserve provenance and make upstream comparison straightforward.  The
 product-facing name belongs at this integration layer.
 
 `v18.3-fusion.1` was tagged at the preceding postgres revision `fbacb2057b`;
-`d14bca64a9` is a test-only kernel script update integrated after that tag.
+`v18.3-fusion.2` is tagged at the current manifest with `d14bca64a9`.
 
 ## Build and test ownership
 
