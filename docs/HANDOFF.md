@@ -24,19 +24,17 @@ a test-only client setting.
 The exact manifest, command, environment, and test matrix are in
 [VALIDATION.md](VALIDATION.md).
 
-## Next acceptance boundary
+## Release acceptance
 
-Before creating the first product tag, repeat the following on the intended
-remote clean checkout:
+Completed on 2026-08-16 from a fresh remote clean checkout:
 
-1. `git submodule update --init --recursive` resolves all three Gitlinks from
-   GitHub.
-2. `scripts/build-all.sh` succeeds with the documented toolchain.
-3. Install Microsoft `mssql-tools18`, then run the baseline with
-   `SQLCMD_BIN_DIR=/opt/mssql-tools18/bin SQLCMD_OPTIONS=-No` for the non-TLS
-   TDS fixture.
-4. Record the exact remote test result in `docs/VALIDATION.md`, then create a
-   product tag only if the manifest still matches the tested Gitlinks.
+1. `git clone --recurse-submodules git@github.com:lvhui465021/openhalo-babelfish.git`
+   resolved all three Gitlinks from GitHub and matched the tested manifest.
+2. `scripts/build-all.sh` succeeded with the documented toolchain.
+3. `scripts/run-baseline.sh` passed with Microsoft SQLCMD 18.6.0002.1,
+   ODBC Driver 18, and `SQLCMD_OPTIONS=-No` for the non-TLS TDS fixture.
+4. The exact result is recorded in [VALIDATION.md](VALIDATION.md). The manifest
+   is frozen and tagged `v18.3-fusion.1`.
 
 The product stays on PostgreSQL 18.3 by policy.  A PostgreSQL-major upgrade is
 a separate architecture decision, not routine dependency maintenance.

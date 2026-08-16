@@ -46,8 +46,29 @@ The TDS baseline uses a dynamically allocated temporary listener port and does
 not require the host's default 1433 port to be free. The product default TDS
 port remains 1433.
 
-## Remaining release gate
+## Clean remote checkout result on 2026-08-16
 
-Repeat the documented build and unified baseline from the target remote clean
-checkout. If the result remains PASS and the three Gitlinks match this table,
-freeze the manifest and create the first product tag (`v18.3-fusion.N`).
+A fresh `git clone --recurse-submodules` from
+`git@github.com:lvhui465021/openhalo-babelfish.git` was built and tested on
+the acceptance host. All three submodule checkouts resolved to the tested
+manifest above.
+
+| Group | Result | Evidence |
+| --- | --- | --- |
+| Build | PASS | `scripts/build-all.sh` completed; kernel and all extensions installed |
+| PG-core Meson suites | PASS | 12 OK, 2 expected skips, 0 failures |
+| MySQL standalone TAP | PASS | 3 files, 31 checks |
+| MySQL kernel protocol/postmaster TAP | PASS | 2 files, 485 checks |
+| TDS TAP | PASS | `001_tdspasswd`: 6 checks; `003_bbfextnotloaded`: 2 checks |
+| Unified baseline | PASS | `baseline: ALL PASS` |
+
+The acceptance host cannot write `/opt` without root, so the same Microsoft
+`sqlcmd` 18.6.0002.1 and ODBC Driver 18 binaries were installed user-locally
+and exposed through `SQLCMD_BIN_DIR`. `SQLCMD_OPTIONS=-No` was used as
+documented for the non-TLS TAP fixture.
+
+## Release gate
+
+The clean remote checkout acceptance on 2026-08-16 passed with the three
+Gitlinks still matching the tested manifest. The manifest is frozen for the
+first product tag, `v18.3-fusion.1`.
