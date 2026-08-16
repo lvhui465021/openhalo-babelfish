@@ -36,5 +36,9 @@ Completed on 2026-08-16 from a fresh remote clean checkout:
 4. The exact result is recorded in [VALIDATION.md](VALIDATION.md). The manifest
    is frozen and tagged `v18.3-fusion.1`.
 
+After that tag, `components/postgres` was advanced to `d14bca64a9` for a
+test-only `run-baseline.sh` portability fix; the full baseline was re-run and
+still passes (`baseline: ALL PASS`).
+
 The product stays on PostgreSQL 18.3 by policy.  A PostgreSQL-major upgrade is
 a separate architecture decision, not routine dependency maintenance.

@@ -1,12 +1,17 @@
 # Validation record
 
-## Tested manifest
+## Current tested manifest
 
 | Component | Branch | Revision |
 | --- | --- | --- |
-| PostgreSQL fusion kernel | `openhalo-fusion` | `fbacb2057b` |
+| PostgreSQL fusion kernel | `openhalo-fusion` | `d14bca64a9` |
 | Babelfish extensions | `openhalo-fusion` | `63e6cebcf` |
 | MySQL extensions | `main` | `621c31dfa` |
+
+> The `v18.3-fusion.1` tag was created from the preceding manifest
+> (`fbacb2057b`, `63e6cebcf`, `621c31dfa`). The current `main` advances only
+> the kernel `run-baseline.sh` portability fix to `d14bca64a9`; the full
+> baseline was re-run on 2026-08-16 after that change and still passes.
 
 ## Environment
 
@@ -50,8 +55,8 @@ port remains 1433.
 
 A fresh `git clone --recurse-submodules` from
 `git@github.com:lvhui465021/openhalo-babelfish.git` was built and tested on
-the acceptance host. All three submodule checkouts resolved to the tested
-manifest above.
+the acceptance host. All three submodule checkouts resolved to the
+`v18.3-fusion.1` manifest (`fbacb2057b`, `63e6cebcf`, `621c31dfa`).
 
 | Group | Result | Evidence |
 | --- | --- | --- |
@@ -70,5 +75,14 @@ documented for the non-TLS TAP fixture.
 ## Release gate
 
 The clean remote checkout acceptance on 2026-08-16 passed with the three
-Gitlinks still matching the tested manifest. The manifest is frozen for the
+Gitlinks still matching the tagged manifest. The manifest was frozen for the
 first product tag, `v18.3-fusion.1`.
+
+## Post-tag maintenance
+
+After `v18.3-fusion.1`, `components/postgres` advanced to `d14bca64a9`
+(test-only `run-baseline.sh` portability: no machine-specific `PERL5LIB`, and
+a missing sqlcmd client now fails the baseline instead of being silently
+skipped). The complete unified baseline was re-run on 2026-08-16 with
+`SQLCMD_BIN_DIR` pointing at the user-local sqlcmd wrapper and
+`SQLCMD_OPTIONS=-No`; result: `baseline: ALL PASS`.

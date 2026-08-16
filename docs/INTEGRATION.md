@@ -7,15 +7,18 @@ PostgreSQL 18.3 openHalo × Babelfish product.  It does not vendor component
 source code: each component remains independently reviewable, while a Gitlink
 records the exact combination that is tested and released.
 
-| Path | Repository | Maintenance branch | Pinned revision at initial integration |
+| Path | Repository | Maintenance branch | Current pinned revision |
 | --- | --- | --- | --- |
-| `components/postgres` | `postgresql_modified_for_babelfish` | `openhalo-fusion` | `fbacb2057b` |
+| `components/postgres` | `postgresql_modified_for_babelfish` | `openhalo-fusion` | `d14bca64a9` |
 | `components/babelfish` | `babelfish_extensions` | `openhalo-fusion` | `63e6cebcf` |
 | `components/mysql` | `mysql_extensions` | `main` | `621c31dfa` |
 
 The pre-existing upstream-oriented repository names are intentionally kept:
 they preserve provenance and make upstream comparison straightforward.  The
 product-facing name belongs at this integration layer.
+
+`v18.3-fusion.1` was tagged at the preceding postgres revision `fbacb2057b`;
+`d14bca64a9` is a test-only kernel script update integrated after that tag.
 
 ## Build and test ownership
 
