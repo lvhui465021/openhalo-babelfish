@@ -36,12 +36,24 @@ or any component location, when needed:
 PREFIX=/opt/openhalo scripts/build-all.sh
 ```
 
+If an Oracle MySQL CLI and Microsoft `sqlcmd` are already installed, the build
+automatically links their original command names into `$PREFIX/bin`. To make
+that a required installation step, use:
+
+```bash
+PREFIX=/opt/openhalo WITH_CLIENTS=1 scripts/build-all.sh
+```
+
+The clients remain externally supplied vendor tools; OpenHalo does not rename
+or reimplement them. See [protocol test clients](tools/clients/README.md) for
+the installation and verification boundary.
+
 The MySQL listener defaults to `mysql_port = 3306`.  Use another port such as
 `13306` only as an explicit development override when a system MySQL instance
 already occupies 3306.
 
-After configuring a cluster and making a `sqlcmd`-compatible client available
-to the TDS TAP suites, run the unified baseline:
+After configuring a cluster and linking the vendor clients, run the unified
+baseline:
 
 ```bash
 scripts/run-baseline.sh
@@ -51,6 +63,15 @@ For the Microsoft ODBC 18 client, use its installed tool directory and make
 encryption optional for the non-TLS TAP fixture:
 
 ```bash
+SQLCMD_BIN_DIR=/opt/mssql-tools18/bin \
+SQLCMD_OPTIONS=-No \
+scripts/run-baseline.sh
+```
+
+Or use client paths that were not linked into the installation prefix:
+
+```bash
+MYSQL_BIN=/path/to/mysql \
 SQLCMD_BIN_DIR=/opt/mssql-tools18/bin \
 SQLCMD_OPTIONS=-No \
 scripts/run-baseline.sh

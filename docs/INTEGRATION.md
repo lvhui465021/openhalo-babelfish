@@ -38,6 +38,13 @@ behavior differs from `sqlcmd`. The test helper accepts client-specific flags
 through `SQLCMD_OPTIONS`; `mssql-tools18` must use `SQLCMD_OPTIONS=-No` for the
 non-TLS TAP fixture. This is a test setting, not a production TLS policy.
 
+`scripts/install-clients.sh` may link externally installed vendor clients into
+the product prefix as `bin/mysql` and `bin/sqlcmd`. The names deliberately
+remain unchanged: neither client is an OpenHalo implementation. The script
+uses symbolic links because `sqlcmd` must remain adjacent to its matching ODBC
+runtime. `scripts/run-baseline.sh` selects these linked paths by default and
+also accepts `MYSQL_BIN` and `SQLCMD_BIN_DIR` overrides.
+
 The current manifest and its exact test evidence are recorded in
 [VALIDATION.md](VALIDATION.md).
 

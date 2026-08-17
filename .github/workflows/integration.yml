@@ -23,7 +23,7 @@ jobs:
           git submodule foreach --recursive 'git diff --check && test -z "$(git status --porcelain)"'
       - name: Validate integration scripts
         run: |
-          bash -n scripts/build-all.sh scripts/run-baseline.sh
+          bash -n scripts/build-all.sh scripts/install-clients.sh scripts/run-baseline.sh scripts/verify-clients.sh
           git diff-tree --check --no-commit-id -r HEAD
 
   integration-baseline:
