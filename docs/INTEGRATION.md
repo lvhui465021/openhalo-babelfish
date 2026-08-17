@@ -55,6 +55,7 @@ branch tip and changes the manifest without declaring a tested component set.
 Use it only as an explicit maintenance preparation step, then inspect and
 commit the resulting Gitlink change.
 
-Detailed component work, compatibility behavior, and current technical
-handoff remain in `components/postgres/docs/HANDOFF.md` and its linked
-documents.
+`README.md`, this guide, `VALIDATION.md`, and `DEPLOYMENT.md` are the
+authoritative product-level documents.  Component documents describe their
+implementation and compatibility details, but must not override the pinned
+manifest, ports, or acceptance result recorded here.

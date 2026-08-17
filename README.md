@@ -62,6 +62,16 @@ configure and validate TLS rather than disabling required encryption.
 See [the validation record](docs/VALIDATION.md) for the tested manifest,
 environment, result matrix, and clean-clone acceptance command.
 
+For production deployment, rollback, known compatibility limits, and the
+additional acceptance work that is intentionally outside the TAP baseline,
+read [the deployment guide](docs/DEPLOYMENT.md) before exposing a listener to
+clients.
+
+The repository's automated checks are described in [the CI guide](docs/CI.md).
+The full integration baseline intentionally runs only on a prepared Ubuntu
+24.04 self-hosted runner because it needs the fixed Babelfish toolchain and a
+real Microsoft SQLCMD client.
+
 The first build requires the prerequisites documented in
 `components/postgres/docs/FUSION_PLAN.md` (Meson/Ninja toolchain, libxml2,
 OpenSSL, Java/CMake, flex/bison, Perl, and ANTLR4 C++ runtime 4.13.2).

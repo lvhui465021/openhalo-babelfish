@@ -1,0 +1,56 @@
+name: Integration manifest and baseline
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  manifest:
+    name: Verify pinned integration manifest
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
+      - name: Verify exact recursive submodule revisions
+        run: |
+          test -z "$(git submodule status --recursive | grep '^[+-]')"
+          git submodule foreach --recursive 'git diff --check && test -z "$(git status --porcelain)"'
+      - name: Validate integration scripts
+        run: |
+          bash -n scripts/build-all.sh scripts/run-baseline.sh
+          git diff-tree --check --no-commit-id -r HEAD
+
+  integration-baseline:
+    name: Build and run full integration baseline
+    needs: manifest
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v18.3-fusion.')
+    runs-on: [self-hosted, linux, x64, openhalo-ubuntu-24.04]
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 1
+      - name: Build fixed manifest
+        run: PREFIX="$GITHUB_WORKSPACE/artifacts/inst" scripts/build-all.sh
+      - name: Run protocol and kernel baseline
+        env:
+          SQLCMD_BIN_DIR: /opt/mssql-tools18/bin
+          SQLCMD_OPTIONS: -No
+        run: scripts/run-baseline.sh
+      - name: Upload baseline logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: integration-baseline-${{ github.run_id }}
+          if-no-files-found: ignore
+          path: |
+            components/babelfish/contrib/babelfishpg_tds/test/log/
+            components/postgres/**/regression.out
+            components/postgres/**/regression.diffs

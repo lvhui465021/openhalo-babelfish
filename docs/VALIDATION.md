@@ -105,3 +105,20 @@ tested manifest (`d14bca64a9`, `63e6cebcf`, `621c31dfa`).
 
 This acceptance freezes the current manifest for the second product tag,
 `v18.3-fusion.2`.
+
+## Validation boundary
+
+The recorded result is a build and protocol/functional baseline.  It is not a
+claim that every production deployment scenario has been accepted.  In
+particular, the following require a separately provisioned environment and
+recorded evidence before a production release:
+
+- TDS TLS/certificate validation.  The TAP fixture is deliberately non-TLS and
+  uses `SQLCMD_OPTIONS=-No` only for that test connection.
+- TDS Kerberos (`002_tdskerberos`) and cross-version dump/restore
+  (`004_bbfdumprestore`), which need a Kerberos realm and an older Babelfish
+  installation respectively.
+- Backup/restore rehearsal, fault recovery, and workload-specific performance
+  validation.
+
+See [DEPLOYMENT.md](DEPLOYMENT.md) for the associated operational checklist.
